@@ -67,6 +67,14 @@ type Router struct {
 
 	// configuration shared with `Route`
 	routeConf
+
+	//configuration extension
+	extensionConf
+}
+
+////20190423 杨麟修改
+type extensionConf struct {
+	extension map[string]interface{}
 }
 
 // common route configuration shared between `Router` and `Route`

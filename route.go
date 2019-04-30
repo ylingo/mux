@@ -29,6 +29,29 @@ type Route struct {
 
 	// config possibly passed in from `Router`
 	routeConf
+
+	//configuration extension
+	extensionConf
+}
+
+//  sets a desc for the route.
+func (r *Route) SetExtensionConf(key string, val interface{}) *Route {
+	if r.err == nil {
+		if r.extension == nil {
+			r.extension = make(map[string]interface{})
+		}
+		r.extension[key] = val
+	}
+	return r
+}
+
+func (r *Route) GetExtensionConf(key string) interface{} {
+	if r.extension != nil {
+		if ret, ok := r.extension[key]; ok {
+			return ret
+		}
+	}
+	return nil
 }
 
 // SkipClean reports whether path cleaning is enabled for this route via
